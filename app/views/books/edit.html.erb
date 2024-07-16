@@ -1,0 +1,50 @@
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete"></html>
+<head>
+ <style type="text/css">
+   .turbolinks-progress-bar {
+   position: fixed;
+   display: block;
+   top: 0;
+   left: 0;
+   height: 3px;
+   background: #0076ff;
+   z-index: 9999;
+   transition: width 300ms ease-out, opacity 150ms 150ms ease-in;
+   transform: translate3d(0, 0, 0);
+  }
+ </style>
+</head>
+<body>
+<main>
+ <p id="notice"></p>
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+     <h1>Editing Book</h1>
+     <% if @book.errors.any? %>
+      <%= @book.errors.count %> error(s) occured:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+   　<% end %>
+     <%= form_with model: @book, url: book_path, method: :patch do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+
+      <h4>Opinion</h4>
+       <%= f.text_area :body %>
+      <div class="form group">
+       <%= f.submit 'Update Book' %>
+      </div>
+     <% end %>
+     <td><%= link_to"Show", book_path(@book.id) %></td>
+       |
+     <td><%= link_to"Back", books_path %></td>
+    </div>
+   </div>
+  </div>
+</main>
+</body>
+</html>
